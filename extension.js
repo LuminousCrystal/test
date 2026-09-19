@@ -3,6 +3,12 @@ import * as Main from "resource:///org/gnome/shell/ui/main.js";
 import { MenuManager } from './menuManager.js';
 import { SystemMenuButton } from './systemMenu.js';
 
+// Note: systemInfoPanel.js is intentionally not imported as an ES module.
+// It's a standalone GTK4/Adw script spawned at runtime via
+// `gjs -m systemInfoPanel.js` (see the GLib.build_filenamev(..., 'systemInfoPanel.js')
+// call in systemMenu.js). It runs in its own process, separate from the
+// Shell's extension context, so it can't be imported here directly.
+
 export default class GlobalMenuExtension extends Extension {
     constructor(metadata) {
         super(metadata);
