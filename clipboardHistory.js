@@ -306,7 +306,7 @@ export class ClipboardPanel {
 
     _pasteIntoFocusedApp() {
         try {
-            let seat = Clutter.get_default_backend().get_default_seat();
+            let seat = ((Clutter.get_default_backend ? Clutter.get_default_backend() : global.stage.context.get_backend())).get_default_seat();
             let virtualDevice = seat.create_virtual_device(Clutter.InputDeviceType.KEYBOARD_DEVICE);
             if (!virtualDevice) return;
             let ctrlScanCode = 29;
